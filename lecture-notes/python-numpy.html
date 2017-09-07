@@ -87,6 +87,266 @@
   </head>
   <body>
     <textarea id="source">
+layout: true
+.top-line[]
+
+---
+class: center, middle
+# Python - Numpy
+
+허준영(jyheo@hansung.ac.kr)
+
+---
+## Contents
+
+---
+## Numpy
+* Extension to Python for **multi-dimensional arrays**
+* Efficiency
+* For scientific computing
+* import Numpy
+```python
+>>> import numpy as np
+>>> list = [1, 2, 3, 4]
+>>> type(list)
+<class 'list'>
+>>> ary = np.array(list)
+>>> type(ary)
+<class 'numpy.ndarray'>
+>>> list
+[1, 2, 3, 4]
+>>> ary
+array([1, 2, 3, 4])
+```
+
+---
+## Creating Array
+### Creating array with List/array
+* np.array( LIST )
+```python
+>>> d2 = np.array([[0, 1, 2], [3, 4, 5]])
+>>> d2
+array([[0, 1, 2],
+       [3, 4, 5]])
+>>> d3 = np.array([d2, d2])
+>>> d3
+array([[[0, 1, 2],
+        [3, 4, 5]],
+
+       [[0, 1, 2],
+        [3, 4, 5]]])
+>>> d2.ndim
+2
+>>> d2.shape
+(2, 3)
+>>> d3.ndim
+3
+>>> d3.shape
+(2, 2, 3)
+```
+
+---
+## Creating Array
+### Creating special array
+* np.arange(START, END, STEP): evenly spaced values within a given interval
+* np.linspace(START, END, NUM_OF_POINTS): evenly spaced numbers over a specified interval
+* np.ones(SHAPE, TYPE): a new array of given shape and type, filled with ones
+* np.zeros(SHAPE, TYPE): a new array of given shape and type, filled with zeros
+* np.eye(ROWS, COLS): a 2-D array with ones on the diagonal and zeros elsewhere
+* np.diag(ARRAY): extract a diagonal or construct a diagonal array
+
+---
+## Creating Array
+### Creating special array
+```python
+>>> np.arange(5)
+array([0, 1, 2, 3, 4])
+>>> np.arange(0, 5, 2)
+array([0, 2, 4])
+>>> np.linspace(0, 1, 5)
+array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ])
+>>> np.linspace(0, 1, 5, endpoint=False)  # except end point
+array([ 0. ,  0.2,  0.4,  0.6,  0.8])
+>>> np.ones((2,2))
+array([[ 1.,  1.],
+       [ 1.,  1.]])
+>>> np.zeros((2,2))
+array([[ 0.,  0.],
+       [ 0.,  0.]])
+>>> np.eye(2)
+array([[ 1.,  0.],
+       [ 0.,  1.]])
+>>> d = np.diag([1, 2]) # construct a diagonal array
+>>> d
+array([[1, 0],
+       [0, 2]])
+>>> np.diag(d) # extract a diagonal
+array([1, 2])
+```
+
+---
+## Creating Array
+### Random array
+* np.random.rand(SHAPE): random values in a given shape
+* np.random.randn(SHAPE): normal distribution
+* try **help(np.random)**
+
+```python
+>>> np.random.rand(5)   # uniform distribution
+array([ 0.47890201,  0.47483496,  0.3979876 ,  0.20977161,  0.61156593])
+>>> np.random.rand(2, 5)
+array([[ 0.65987544,  0.80931004,  0.10713224,  0.40180672,  0.60894812],
+       [ 0.74707904,  0.46808531,  0.92194004,  0.26405604,  0.60130934]])
+>>> np.random.randn(5)  # normal distribution
+array([ 1.24009415, -0.3490193 ,  0.43793239,  2.46981379,  0.16273478])
+>>> help(np.random)
+```
+
+---
+## Creating Array
+### Data type for array values
+* int, float, bool, complex
+* Default type is float
+```python
+>>> np.array([1, 2, 3]).dtype
+dtype('int32')
+>>> np.array([1, 2, 3], dtype=float).dtype
+dtype('float64')
+>>> np.array([1., 2, 3]).dtype
+dtype('float64')
+>>> np.array([1+1j, 2+2j, 3+3j]).dtype
+dtype('complex128')
+>>> np.array([True, False, True]).dtype
+dtype('bool')
+>>> np.array([True, False, True], dtype=int).dtype
+dtype('int32')
+```
+
+---
+## Indexing
+* Use [ ] operator
+* [x, y] for 2D array
+* [x, y, z] for 3D array
+
+```python
+>>> a = np.arange(10)
+>>> a
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+>>> a[0], a[5], a[-1]
+(0, 5, 9)
+>>> b = np.random.rand(3, 3) # 2-dimentional array
+>>> b.shape
+(3, 3)
+>>> b[0, 0], b[1, 1], b[2, 2]
+(0.63595763265126359, 0.62567509371895325, 0.70253894348755386)
+>>> np.diag(b)
+array([ 0.63595763,  0.62567509,  0.70253894])
+>>> c = np.random.rand(3, 3, 3)  # 3-dimentional array
+>>> c.shape
+(3, 3, 3)
+>>> c[0, 0, 0]
+0.87835050827842043
+```
+
+---
+## Slicing
+* Use [ : : ] operator
+* [x_start: x_end: x_step, y_start: y_end: y_step] for 2D array
+
+```python
+>>> a = np.arange(10)
+>>> a[5:8]
+array([5, 6, 7])
+>>> a[5:8] = 10     # slicing and assignment
+>>> a
+array([ 0,  1,  2,  3,  4, 10, 10, 10,  8,  9])
+>>> b = np.reshape(np.arange(16), (4,4))
+>>> b
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15]])
+>>> b[1:3, 1:3]
+array([[ 5,  6],
+       [ 9, 10]])
+>>> b[::2, ::2]
+array([[ 0,  2],
+       [ 8, 10]])
+```
+
+---
+## Slicing
+* A slicing operation creates a view on the original array
+    - The original array is **not copied**
+
+```python
+>>> a = np.arange(10)
+>>> a
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+>>> b = a[::2]
+>>> b
+array([0, 2, 4, 6, 8])
+>>> np.may_share_memory(a, b)
+True
+>>> b[2] = 999
+>>> b
+array([  0,   2, 999,   6,   8])
+>>> a
+*array([  0,   1,   2,   3, 999,   5,   6,   7,   8,   9])
+>>> c = b.copy()
+>>> np.may_share_memory(b, c)
+False
+>>> c[2] = -1
+>>> b
+array([  0,   2, 999,   6,   8])
+>>> c
+array([ 0,  2, -1,  6,  8])
+```
+
+---
+## Slicing
+### Boolean mask
+* Extract a sub-array with the maks
+    - the sub-array is **copied** from the original array
+
+```python
+>>> a = np.arange(20)
+>>> a % 3 == 0
+array([ True, False, False,  True, False, False,  True, False, False,
+        True, False, False,  True, False, False,  True, False, False,
+        True, False], dtype=bool)
+>>> a[a % 3 == 0]
+array([ 0,  3,  6,  9, 12, 15, 18])
+>>> a[a % 3 == 0] = -1
+>>> a
+array([-1,  1,  2, -1,  4,  5, -1,  7,  8, -1, 10, 11, -1, 13, 14, -1, 16,
+       17, -1, 19])
+```
+
+---
+## Slicing
+### Indxing with an array
+* Extract a sub-array with the indexing array
+    - the sub-array is **copied** from the original array
+
+```python
+>>> a = np.arange(20) * 10
+>>> a[[5, 7]]
+array([50, 70])
+>>> a[[5, 7]] = -1
+>>> a
+array([  0,  10,  20,  30,  40,  -1,  60,  -1,  80,  90, 100, 110, 120,
+       130, 140, 150, 160, 170, 180, 190])
+>>> b = a[[5, 7]]
+>>> b
+array([-1, -1])
+>>> b[0] = 999
+>>> b
+array([999,  -1])
+>>> a
+array([  0,  10,  20,  30,  40,  -1,  60,  -1,  80,  90, 100, 110, 120,
+       130, 140, 150, 160, 170, 180, 190])
+```
 
     </textarea>
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
