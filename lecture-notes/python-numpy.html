@@ -98,6 +98,11 @@ class: center, middle
 
 ---
 ## Contents
+* Numpy
+* Creating Array
+* Indexing
+* Slicing
+
 
 ---
 ## Numpy
@@ -347,6 +352,164 @@ array([999,  -1])
 array([  0,  10,  20,  30,  40,  -1,  60,  -1,  80,  90, 100, 110, 120,
        130, 140, 150, 160, 170, 180, 190])
 ```
+
+---
+## Basic Operations
+### Arithmetic
+* +, -, \* , \*\*
+
+```python
+>>> a = np.arange(5)
+>>> b = np.arange(2, 7)
+>>> a
+array([0, 1, 2, 3, 4])
+>>> b
+array([2, 3, 4, 5, 6])
+>>> a + 1
+array([1, 2, 3, 4, 5])
+>>> a ** 2
+array([ 0,  1,  4,  9, 16], dtype=int32)
+>>> a + b
+array([ 2,  4,  6,  8, 10])
+>>> a * b       # Scalar , not Matrix Multiplication
+array([ 0,  3,  8, 15, 24])
+```
+
+---
+## Basic Operations
+### Logical
+* ==, >, <, np.Logical_or, np.logical_and
+
+```python
+>>> a = np.array([0, 1, 2, 3, 4, 5])
+>>> b = np.array([1, 0, 2, 5, 3, 4])
+>>> a == b
+array([False, False,  True, False, False, False], dtype=bool)
+>>> a > b
+array([False,  True, False, False,  True,  True], dtype=bool)
+>>> np.logical_and(a, b)
+array([False, False,  True,  True,  True,  True], dtype=bool)
+>>> np.logical_or(a, b)
+array([ True,  True,  True,  True,  True,  True], dtype=bool)
+```
+
+---
+## Other Operations
+* np.array_equal, np.log, np.sin, np.exp
+
+```python
+>>> a = np.arange(5)
+>>> b = np.arange(1, 6)
+>>> c = np.arange(5)
+>>> np.array_equal(a, b)
+False
+>>> np.array_equal(a, c)
+True
+>>> np.log(b)
+array([ 0.        ,  0.69314718,  1.09861229,  1.38629436,  1.60943791])
+>>> np.sin(a)
+array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ])
+>>> np.exp(a)
+array([  1.        ,   2.71828183,   7.3890561 ,  20.08553692,  54.59815003])
+```
+
+---
+## Simple Statistics
+* np.sum, np.min, np.argmin, np.all, np.any
+* np.mean, np.median, np.std
+
+```python
+>>> a = np.arange(5)
+>>> a
+array([0, 1, 2, 3, 4])
+>>> a.sum()
+10
+>>> np.sum(a)
+10
+>>> np.min(a)
+0
+>>> np.argmin(a)  # index of min element
+0
+>>> np.all(a)  # All True?
+False
+>>> np.any(a)  # Anyone True?
+True
+>>> np.mean(a)
+2.0
+>>> np.median(a)
+2.0
+>>> np.std(a)
+1.4142135623730951
+```
+
+---
+## Broadcasting
+
+<img src="http://www.scipy-lectures.org/_images/numpy_broadcasting.png" width=80%>
+
+---
+## Broadcasting
+```python
+>>> a = np.array([[0, 0, 0], [10, 10, 10], [20, 20, 20], [30, 30, 30]])
+>>> b = np.array([0, 1, 2])
+>>> a
+array([[ 0,  0,  0],
+       [10, 10, 10],
+       [20, 20, 20],
+       [30, 30, 30]])
+>>> b
+array([0, 1, 2])
+>>> a + b
+array([[ 0,  1,  2],
+       [10, 11, 12],
+       [20, 21, 22],
+       [30, 31, 32]])
+>>> a = np.array([[0], [10], [20], [30]])
+>>> a
+array([[ 0],
+       [10],
+       [20],
+       [30]])
+>>> a + b
+array([[ 0,  1,  2],
+       [10, 11, 12],
+       [20, 21, 22],
+       [30, 31, 32]])
+```
+
+---
+## Array Reshape
+* array.T, np.reshape()
+
+```python
+>>> a = np.array([[1, 2, 3], [4, 5, 6]])
+>>> a
+array([[1, 2, 3],
+       [4, 5, 6]])
+>>> b = a.T   # Transpose of a
+>>> b         # T return a view
+array([[1, 4],
+       [2, 5],
+       [3, 6]])
+>>> a.shape
+(2, 3)
+>>> a.reshape((3, 2)) # reshape may return view or copy
+array([[1, 2],
+       [3, 4],
+       [5, 6]])
+>>> a.reshape((3, -1)) # unspecified (-1) value is inferred
+array([[1, 2],
+       [3, 4],
+       [5, 6]])
+>>> np.arange(4 * 4).reshape((4, 4))
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15]])
+```
+
+---
+## Exercise
 
     </textarea>
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
