@@ -420,4 +420,111 @@ array([[ 0,  1,  2,  3],
 ```
 
 ---
+## Linear Algebra
+* Matrix Multiplication, np.dot(), np.linalg.multi_dot()
+
+```python
+>>> a
+array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+>>> np.dot(a, a)
+array([[ 15,  18,  21],
+       [ 42,  54,  66],
+       [ 69,  90, 111]])
+>>> a = np.arange(6).reshape((2,3))
+>>> b = np.arange(15).reshape((3,5))
+>>> c = np.arange(10).reshpae((5,2))
+>>> np.linalg.multi_dot([a, b, c])
+array([[ 680,  835],
+       [2120, 2590]])
+```
+
+---
+## Linear Algebra
+* np.inner(), np.outer(), np.linalg.matrix_power(M, n)
+
+```python
+>>> a = [1, 2]
+>>> b = [2, 3]
+>>> np.inner(a, b)
+8
+>>> np.outer(a, b)
+array([[2, 3],
+       [4, 6]])
+>>> m = [[1, 2], [3, 4]]
+>>> np.linalg.matrix_power(m, 10)
+array([[ 4783807,  6972050],
+       [10458075, 15241882]])
+```
+
+---
+## Linear Algebra
+* Eigenvalue, eigenvector: np.linalg.eig()
+* Determinant: np.linalg.det()
+* Inverse of a Matrix: np.linalg.inv()
+
+```python
+>>> a = np.arange(4).reshape((2,2))
+>>> a
+array([[0, 1],
+       [2, 3]])
+>>> np.linalg.eig(a)
+(array([-0.56155281,  3.56155281]), array([[-0.87192821, -0.27032301],
+       [ 0.48963374, -0.96276969]]))
+>>> np.linalg.det(a)
+-2.0
+>>> np.linalg.inv(a)
+array([[-1.5,  0.5],
+       [ 1. ,  0. ]])
+>>> np.dot(np.linalg.inv(a), a)
+array([[ 1.,  0.],
+       [ 0.,  1.]])
+```
+
+---
+## Linear Algebra
+* np.linalg.solve(): Solve a system of linear equations
+
+```python
+*>>> # Solve the system of equations: 3 * x0 + x1 = 9 and x0 + 2 * x1 = 8
+>>> a = np.array([[3,1], [1,2]])
+>>> b = np.array([9,8])
+>>> x = np.linalg.solve(a, b)
+>>> x
+array([ 2.,  3.])
+>>> np.allclose(np.dot(a, x), b) # Compare with tolerance
+True
+```
+
+---
 ## Exercise
+### Array Manipulation
+* Make following array using np.arange() and so on.
+    - Hint: reshape, T
+```python
+[[1,  6, 11],
+ [2,  7, 12],
+ [3,  8, 13],
+ [4,  9, 14],
+ [5, 10, 15]]
+```
+* Make an array with only 2nd and 4th rows of the above array.
+    - Hint: Slicing
+* Make a random array, which shape is (10,) and find an index whose value is closest to 0.5.
+    - Hint: np.abs, np.argmin
+
+---
+## Exercise - Markov Chain
+* **P** is Transition matrix, and **p** is probability distribution on the states
+    1. 0 <= P[i,j] <= 1: probability to go from state i to state j
+    2. Transition rule: p<sub>new</sub> = P<sup>T</sup> p<sub>old</sub>
+    3. all(sum(P, axis=1) == 1), p.sum() == 1: normalization
+* Write a script that works with 5 states
+    - Constructs a random matrix, and normalizes each row so that it is a transition matrix.
+    - Starts from a random (normalized) probability distribution p and takes 50 steps => p<sub>50</sub>
+    - Computes the stationary distribution: the eigenvector of P.T with eigenvalue 1 (numerically: closest to 1) => p<sub>stationary</sub>
+* Remember to normalize the eigenvector
+    - Checks if p<sub>50</sub> and p<sub>stationary</sub> are equal to tolerance 1e-5
+
+.footnote[http://www.scipy-lectures.org/intro/numpy/exercises.html#markov-chain]
