@@ -102,7 +102,13 @@ class: center, middle
 * Creating Array
 * Indexing
 * Slicing
-
+* Basic Operations
+* Other Operations
+* Simple Statistics
+* Broadcasting
+* Array Reshape
+* Linear Algebra
+* Exercise
 
 ---
 ## Numpy
@@ -582,7 +588,7 @@ array([[ 1.,  0.],
 >>> x = np.linalg.solve(a, b)
 >>> x
 array([ 2.,  3.])
->>> np.allclose(np.dot(a, x), b)
+>>> np.allclose(np.dot(a, x), b) # Compare with tolerance
 True
 ```
 

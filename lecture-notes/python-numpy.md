@@ -13,7 +13,13 @@ class: center, middle
 * Creating Array
 * Indexing
 * Slicing
-
+* Basic Operations
+* Other Operations
+* Simple Statistics
+* Broadcasting
+* Array Reshape
+* Linear Algebra
+* Exercise
 
 ---
 ## Numpy
