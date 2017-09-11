@@ -33,10 +33,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 ```
 
-<img src="http://matplotlib.org/_static/membrane_frontpage.png">
-<img src="http://matplotlib.org/_static/histogram_frontpage.png"/>
-<img src="http://matplotlib.org/_static/contour_frontpage.png"/>
-<img src="http://matplotlib.org/_static/surface3d_frontpage.png"/>
+<img src="images/matplotlib_font1.png"/>
+<img src="images/matplotlib_font2.png"/>
+<img src="images/matplotlib_font3.png"/>
+<img src="images/matplotlib_font4.png"/>
 
 * IPyton is highly recommended for matplotlib
 
