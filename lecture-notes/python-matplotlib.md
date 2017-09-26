@@ -213,3 +213,9 @@ plt.show()
 ## References
 * http://www.scipy-lectures.org/intro/matplotlib/index.html
 * http://matplotlib.org/gallery.html
+
+---
+## Exercise
+* Write a program to plot a bar chart of word's begin character frequency in a file.
+* Modify the above program to plot bar charts for two files.
+    - Hint: http://matplotlib.org/examples/pylab_examples/log_bar.html
