@@ -581,3 +581,17 @@ b 2
 
 ---
 ## Exercise
+* Write a program to count lines, words and characters of a file.
+* Hint: how to read a file
+    ```python
+    # read a file line by line
+    f = open('test.txt')
+    for l in f.readlines():
+        print(l)
+    f.close()
+    ```
+    ```python
+    with open('test.txt') as f:
+        for l in f.readlines():
+            print(l)
+    ```
