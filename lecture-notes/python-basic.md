@@ -285,10 +285,10 @@ def factorial (n):
 ## While Loop
 * while CONDITION: STATEMENT(or BLOCK)
 ```python
-def countdown(n):
-    while n > 0:
-        print(n)
-        n = n-1
+    def countdown(n):
+        while n > 0:
+            print(n)
+            n = n-1
 ```
 
 * break, continue
