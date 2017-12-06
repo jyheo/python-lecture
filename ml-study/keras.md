@@ -132,5 +132,5 @@ acc: 79.04%
 
 ---
 ## 전체 코드
-
+https://github.com/jyheo/python-lecture/blob/master/ml-study/keras_basic.py
 
