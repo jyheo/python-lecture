@@ -16,6 +16,9 @@ class: center, middle
 * List
 * Tuple
 * Dict
+* Set
+* File
+* Pickle
 * Exercise
 
 ---
@@ -113,13 +116,44 @@ hello10
 
 ---
 ## Strings
-### Format String
+### Format String (OLD)
 * str % (tuple of arguments)
 
 ```python
 >>> str = 'Hello %s, %d' % ('World', 10)
 >>> print(str)
 Hello World, 10
+```
+
+---
+## Strings
+### Format String (NEW)
+* str.format()
+
+```python
+>>> str = 'Hello {}, {}'.format('World', 10)
+>>> str
+'Hello World, 10'
+>>> str = 'Hello {wd}, {num}'.format(num=10, wd='World')
+>>> str
+'Hello World, 10'
+>>> str = 'Hello {wd:10}, {num:.3f}'.format(num=10.0, wd='World')
+>>> str
+'Hello World     , 10.000'
+```
+
+---
+## Strings
+### Format String (NEW 3.6+)
+* Formatted string literals
+
+```python
+>>> w = 'World'
+>>> num = 10
+>>> f'Hello {w}, {num}'
+'Hello World, 10'
+>>> f'Hello {w}, {num + num}'
+'Hello World, 20'
 ```
 
 ---
@@ -580,6 +614,107 @@ b 2
 ```
 
 ---
+## Set
+* Manipulating unordered collections of unique elements
+* Set operations: membership testing, add/remove a element, intersection, union, difference, and symmetric difference
+* The set classes are implemented using dictionaries
+
+```python
+>>> s1 = {1, 2, 3, 3, 5}    # set creation
+>>> s1
+{1, 2, 3, 5}
+>>> list1 = ['a', 'b', 'c', 'c']
+>>> list1
+['a', 'b', 'c', 'c']
+>>> set(list1)              # list to set
+{'c', 'b', 'a'}
+>>> s1.add(4)               # add an element
+>>> s1
+{1, 2, 3, 4, 5}
+>>> s1.update({7, 8, 9})    # add some elements
+>>> s1
+{1, 2, 3, 4, 5, 7, 8, 9}
+>>> s1.remove(5)            # remove a element
+```
+
+---
+## Set
+
+```python
+>>> s1
+{1, 2, 3, 4, 7, 8, 9}
+>>> s2 = {2, 3, 4, 10, 11}
+>>> s1 & s2         # s1.intersection(s2)
+{2, 3, 4}
+>>> s1 | s2         # s1.union(s2) 
+{1, 2, 3, 4, 7, 8, 9, 10, 11}
+>>> s1 - s2         # s1.difference(s2)
+{8, 1, 9, 7}
+>>> s2
+{3, 2, 10, 11, 4}
+>>> s3 = {3, 2, 10, 11, 4, 5}
+>>> s3.issuperset(s2)
+True
+>>> s2.issubset(s3)
+True
+>>> 5 in s3
+True
+>>> 5 in s2
+False
+>>> 5 not in s2
+True
+```
+
+---
+## File
+* open() returns a file object
+    - open(filename, mode)
+    - mode: 'r', 'w', 'a', 'b'
+
+```python
+>>> f = open('workfile', 'w')
+>>> f.write('data to be written')
+18
+>>> f.close()
+```
+
+* with open(filename, mode) as f
+
+```python
+>>> with open('workfile', 'r') as f:
+...     read_data = f.read()
+...
+>>> read_data
+'data to be written'
+>>> f.closed
+True
+```
+
+---
+## Pickle
+* Serializing and de-serializing a Python object structure
+    - Pickling: A Python object hierarchy is converted into a byte stream
+    - Unpickling: Inverse operation, a byte stream (from a binary file or bytes-like object) is converted back into an object hierarchy.
+* **Never unpickle data received from an untrusted source**
+
+```python
+>>> import pickle
+>>> data = {
+...     'a': [1, 2.0, 3, 4+6j],
+...     'b': ("character string", b"byte string"),
+...     'c': {None, True, False}
+... }
+>>> with open('data.pickle', 'wb') as f:
+...     pickle.dump(data, f)
+...
+>>> with open('data.pickle', 'rb') as f:
+...     data2 = pickle.load(f)
+...
+>>> print(data2)
+{'b': ('character string', b'byte string'), 'a': [1, 2.0, 3, (4+6j)], 'c': {False, True, None}}
+```
+
+---
 ## Exercise
 * Write a program to count lines, words and characters of a file.
 * Hint: how to read a file
@@ -595,3 +730,8 @@ b 2
         for l in f.readlines():
             print(l)
     ```
+
+---
+## Exercise2
+* Write a program to count occurrences of each word in a text file.
+* Hint: split(), strip(), dict()
