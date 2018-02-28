@@ -545,6 +545,23 @@ array([[0., 2.],
     - Hint: np.abs, np.argmin
 
 ---
+## Exercise
+### Load, shuffle, and Slice dataset
+
+```python
+>>> ds = np.DataSource()
+>>> url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/\
+... pima-indians-diabetes/pima-indians-diabetes.data'
+>>> f = ds.open(url)
+>>> dataset = np.loadtxt(f, delimiter=',')
+>>> f.close()
+>>> np.random.seed(8)
+>>> np.random.shuffle(dataset)
+>>> X = dataset[:,0:8]
+>>> Y = dataset[:,8]
+```
+
+---
 ## Exercise - Markov Chain
 * **P** is Transition matrix, and **p** is probability distribution on the states
     1. 0 <= P[i,j] <= 1: probability to go from state i to state j
