@@ -1,6 +1,6 @@
 VERSION=0.9-prerelease
 
-TARGETS=python-basic.html python-numpy.html python-matplotlib.html python-pandas.html
+TARGETS=python-basic.html python-class.html python-numpy.html python-matplotlib.html python-pandas.html
 
 html: $(TARGETS)
 
