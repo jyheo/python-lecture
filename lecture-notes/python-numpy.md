@@ -19,6 +19,7 @@ class: center, middle
 * Broadcasting
 * Array Reshape
 * Linear Algebra
+* File
 * Exercise
 
 ---
@@ -502,6 +503,28 @@ array([[ 1.,  0.],
 array([ 2.,  3.])
 >>> np.allclose(np.dot(a, x), b) # Compare with tolerance
 True
+```
+
+---
+## File
+* np.loadtxt()
+    - Load data from a text file.
+    - Each row in the text file must have the same number of values.
+
+```python
+>>> from io import StringIO
+>>> c = StringIO('0 1\n2 3')
+>>> np.loadtxt(c)
+array([[0., 1.],
+       [2., 3.]])
+>>> d = StringIO('M 21 72\nF 35 58')
+>>> np.loadtxt(d, dtype={'names':('gender', 'age', 'weight'), 'formats':('S1', 'i4', 'f4')})
+array([(b'M', 21, 72.), (b'F', 35, 58.)],
+      dtype=[('gender', 'S1'), ('age', '<i4'), ('weight', '<f4')])
+>>> e = StringIO('0, 1, 2\n3, 4, 5')
+>>> np.loadtxt(e, delimiter=',', usecols=(0, 2))
+array([[0., 2.],
+       [3., 5.]])
 ```
 
 ---
