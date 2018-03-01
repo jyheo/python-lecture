@@ -11,13 +11,13 @@ class: center, middle
 ## Contents
 * Python is OOP
 * Class & Objects
-* Constructor & Methods 
+* Constructor & Methods
+* Getter/Setter Method & Private Member
 * Class Variables & Destructor
 * Class Methods
 * Static Methods
 * Inheritance
 * Iterator
-* Generator
 
 ---
 ## Python is OOP
@@ -84,6 +84,38 @@ AttributeError: 'Orange' object has no attribute 'attr2'
 yellow 1
 >>> orange2.print(2)
 red 2
+```
+
+---
+## Getter/Setter Method & Private Member
+* Private(hidden)) member
+    - at least two leading underscores, at most one trailing underscore
+
+```python
+>>> class Orange:
+...     def __init__(self, color=None):  # public! Not private!
+*...             self.__color = color    # private attribute
+*...     @property
+*...     def color(self):                # getter of self.__color
+...             print('getter')
+...             return self.__color
+*...     @color.setter
+*...     def color(self, color):         # setter of self.__color
+...             print('setter')
+...             self.__color = color
+...
+>>> o = Orange()
+>>> o.__color               # access to private attribute
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Orange' object has no attribute '__color'
+>>> o.color
+getter
+>>> o.color = 'red'
+setter
+>>> o.color
+getter
+'red'
 ```
 
 ---
@@ -190,12 +222,79 @@ static method
 
 ---
 ## Inheritance
+* Derived classes may override methods of their base classes
+    - To call the base class method directly: call BaseClassName.methodname(self, args) or super().methodname(args)
 
-* Isinstance
-* Issubclass
+```python
+>>> class BaseClass:
+...     def __init__(self):
+...             print('BaseClass.__init__')
+...     def method(self, arg1):
+...             print('BaseClass.method', arg1)
+...
+*>>> class DerivedClass(BaseClass):
+...     def __init__(self):               # overriding constructor
+...             super().__init__()        # calling BaseClass' __init__
+...             print('DerivedClass.__init__')
+...     def method(self, arg1, arg2):     # overriding a method
+...             BaseClass.method(self, arg1)      # calling BaseClass' method()
+...             print('DerivedClass.method', arg2)
+...
+>>> d = DerivedClass()
+BaseClass.__init__
+DerivedClass.__init__
+>>> d.method('arg1', 'arg2')
+BaseClass.method arg1
+DerivedClass.method arg2
+```
+
+---
+## Inheritance
+* isinstance
+    - To check an instance's type
+* issubclass
+    - To check class inheritance
+
+```python
+>>> class BaseClass:
+...     pass
+...
+>>> class DerivedClass(BaseClass):
+...     pass
+...
+>>> b = BaseClass()
+>>> d = DerivedClass()
+>>> isinstance(b, BaseClass)
+True
+>>> isinstance(b, DerivedClass)
+False
+>>> isinstance(d, BaseClass)
+True
+>>> isinstance(d, DerivedClass)
+True
+>>> issubclass(DerivedClass, BaseClass)    # issubclass(d.__class__, b.__class__)
+True
+```
 
 ---
 ## Iterator
+* Iterable class
 
----
-## Generator
+```python
+>>> class Reverse:
+...     def __init__(self, data):
+...             self.__data = data
+*...     def __iter__(self):
+...             self.__index = len(self.__data)
+...             return self
+*...     def __next__(self):
+...             if self.__index == 0:
+...                     raise StopIteration
+...             self.__index -= 1
+...             return self.__data[self.__index]
+...
+>>> rev = Reverse('hello world')
+>>> for c in rev:
+...     print(c, end=' ')
+```
+
