@@ -88,9 +88,7 @@ red 2
 
 ---
 ## Getter/Setter Method & Private Member
-* Private(hidden)) member
-    - at least two leading underscores, at most one trailing underscore
-
+* Private member: at least two leading underscores, at most one trailing underscore
 ```python
 >>> class Orange:
 ...     def __init__(self, color=None):  # public! Not private!

@@ -177,9 +177,7 @@ red 2
 
 ---
 ## Getter/Setter Method & Private Member
-* Private(hidden)) member
-    - at least two leading underscores, at most one trailing underscore
-
+* Private member: at least two leading underscores, at most one trailing underscore
 ```python
 >>> class Orange:
 ...     def __init__(self, color=None):  # public! Not private!
@@ -196,7 +194,7 @@ red 2
 >>> o = Orange()
 >>> o.__color               # access to private attribute
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+File "<stdin>", line 1, in <module>
 AttributeError: 'Orange' object has no attribute '__color'
 >>> o.color
 getter
