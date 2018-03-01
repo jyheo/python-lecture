@@ -1,5 +1,6 @@
 ## Python Lecture slides
 * [python basic](https://jyheo.github.io/python-lecture/lecture-notes/python-basic.html)
+* [python class](https://jyheo.github.io/python-lecture/lecture-notes/python-class.html)
 * [python numpy](https://jyheo.github.io/python-lecture/lecture-notes/python-numpy.html)
 * [python matplotlib](https://jyheo.github.io/python-lecture/lecture-notes/python-matplotlib.html)
 * [python pandas](https://jyheo.github.io/python-lecture/lecture-notes/python-pandas.html)
