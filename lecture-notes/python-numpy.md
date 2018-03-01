@@ -550,8 +550,8 @@ array([[0., 2.],
 
 ```python
 >>> ds = np.DataSource()
->>> url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/\
-... pima-indians-diabetes/pima-indians-diabetes.data'
+>>> url = ('https://archive.ics.uci.edu/ml/machine-learning-databases/'
+...     'pima-indians-diabetes/pima-indians-diabetes.data')
 >>> f = ds.open(url)
 >>> dataset = np.loadtxt(f, delimiter=',')
 >>> f.close()
