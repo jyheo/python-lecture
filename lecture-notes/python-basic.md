@@ -7,6 +7,8 @@ class: center, middle
 
 허준영(jyheo@hansung.ac.kr)
 
+https://jyheo.github.io/python-lecture/
+
 ---
 ## Contents
 * Strings
