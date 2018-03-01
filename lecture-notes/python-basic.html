@@ -422,6 +422,28 @@ hello world
 ```
 
 ---
+## Function
+### Global/Local variables
+* Declare explicitly a global variable in a function with global keyword
+
+```python
+>>> global_var = 1
+>>> def func1():
+...     global_var = 2  # This is not a global variable, but a local variable.
+...
+>>> func1()
+>>> global_var
+1
+>>> def func2():
+*...     global global_var  # Use the global keyword to declare the global variable
+...     global_var = 3
+...
+>>> func2()
+>>> global_var
+3
+```
+
+---
 ## While Loop
 * while CONDITION: STATEMENT(or BLOCK)
 ```python
