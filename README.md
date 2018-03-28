@@ -4,6 +4,7 @@
 * [python numpy](https://jyheo.github.io/python-lecture/lecture-notes/python-numpy.html)
 * [python matplotlib](https://jyheo.github.io/python-lecture/lecture-notes/python-matplotlib.html)
 * [python pandas](https://jyheo.github.io/python-lecture/lecture-notes/python-pandas.html)
+* [python debugging(external link)](https://www.digitalocean.com/community/tutorials/how-to-use-the-python-debugger)
 * References
     - [Google's Python Class](https://developers.google.com/edu/python/)
     - [NumPy: creating and manipulating numerical data](http://www.scipy-lectures.org/intro/numpy/)
